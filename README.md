@@ -12,7 +12,8 @@
 
 ## 环境准备
 
-- Python 3.12,安装依赖(含 CUDA 12.8 版 PyTorch,约需 4.6GB 显存):
+- Python 3.12,安装依赖(含 GPU 版 PyTorch,约需 4.6GB 显存;若装成 CPU 版或想用更新的
+  CUDA 构建,见 requirements.txt 内注释):
 
   ```bat
   pip install -r requirements.txt

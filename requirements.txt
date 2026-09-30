@@ -1,13 +1,16 @@
-# 已在 Python 3.12 + Windows + NVIDIA GPU 环境验证的版本组合。
+# 已在 Python 3.12 + Windows + NVIDIA GPU 环境验证,只设版本下限,更新版本一般也可用。
 # 安装:pip install -r requirements.txt
 --extra-index-url https://download.pytorch.org/whl/cu128
 
-# GPU 推理(+cu128 后缀只在 PyTorch 官方源存在,确保装的是 CUDA 12.8 构建而非 CPU 版)
-torch==2.9.1+cu128
-# 有道官方推理库,自动带入 transformers==4.57.6 等依赖
+# GPU 推理(允许更新版本)。注意:Windows 下 pip 有可能从 PyPI 装成不带 CUDA 的 CPU 构建;
+# 如果 `import torch; torch.cuda.is_available()` 为 False,用下面命令强制装 CUDA 版
+# (cu128 可换成你的 NVIDIA 驱动支持的更新 CUDA 线,如 cu130):
+#   pip install torch --upgrade --index-url https://download.pytorch.org/whl/cu128
+torch>=2.9.1
+# 有道官方推理库,精确锁定:它会锁死 transformers==4.57.6,且升级可能改动推理 API
 qwen_asr==0.0.6
-# 网页界面
-gradio==6.17.3
+# 网页界面(锁 6.x:gradio 大版本升级常有破坏性 API 改动)
+gradio~=6.17
 # 音频处理
-numpy==2.5.3
-soundfile==0.14.0
+numpy~=2.5
+soundfile>=0.14
