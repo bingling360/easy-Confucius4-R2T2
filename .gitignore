@@ -1,0 +1,12 @@
+# Python 虚拟环境(5GB+,用 pip install -r requirements.txt 重建)
+r2t2-env/
+
+# 模型权重(5.6GB+,见 models/ 下载说明)
+models/
+
+# 官方仓库源码(参考用,可自行 clone)
+Confucius4-R2T2/
+
+# Python 缓存
+__pycache__/
+*.pyc
