@@ -12,7 +12,15 @@
 
 ## 环境准备
 
-- Python 3.12 + CUDA 版 PyTorch(约需 4.6GB 显存)
+- Python 3.12,安装依赖(含 CUDA 12.8 版 PyTorch,约需 4.6GB 显存):
+
+  ```bat
+  pip install -r requirements.txt
+  ```
+
+- **ffmpeg**(系统依赖):从视频抽取音轨时通过命令行调用,需安装并加入 PATH。
+  Windows 可从 [ffmpeg.org](https://ffmpeg.org/download.html) 下载 essentials 构建包,
+  或直接 `winget install ffmpeg`
 - 模型(必需,共约 5.6GB):下载后放到 `models/` 目录,目录结构为
 
   ```

@@ -1,0 +1,13 @@
+# 已在 Python 3.12 + Windows + NVIDIA GPU 环境验证的版本组合。
+# 安装:pip install -r requirements.txt
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+# GPU 推理(+cu128 后缀只在 PyTorch 官方源存在,确保装的是 CUDA 12.8 构建而非 CPU 版)
+torch==2.9.1+cu128
+# 有道官方推理库,自动带入 transformers==4.57.6 等依赖
+qwen_asr==0.0.6
+# 网页界面
+gradio==6.17.3
+# 音频处理
+numpy==2.5.3
+soundfile==0.14.0
