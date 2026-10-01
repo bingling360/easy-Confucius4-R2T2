@@ -41,6 +41,15 @@ PUNCT_SET = set(CJK_END_PUNCT + "：:…\"'“”‘’（）()[]【】《》<>-
 # SRT 行尾要去掉的标点(中文字幕规范:行尾不放标点;句中标点保留)
 END_PUNCT_STRIP = "，。、,.。;；:：!！?？…\"'“”‘’》」』)）]】"
 
+# 网页界面下载文件要经过 URL,半角 # 会被浏览器当锚点截断链接、% 干扰百分号转义,
+# 会导致下载失败;转成显示相近的全角字符
+_URL_UNSAFE = str.maketrans({"#": "＃", "%": "％"})
+
+
+def safe_stem(name: str) -> str:
+    """文件名主干中影响 URL 下载的字符转全角(如抖音标题里的 #话题标签)"""
+    return name.translate(_URL_UNSAFE)
+
 
 def merge_punct_into_items(text, items):
     """把 ASR 原文里的标点按位置贴回对齐条目;对不上时返回 None"""

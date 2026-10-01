@@ -11,7 +11,7 @@ import threading
 
 import gradio as gr
 
-from make_srt import transcribe_to_srt, MODEL_DIR, ALIGNER_DIR
+from make_srt import transcribe_to_srt, MODEL_DIR, ALIGNER_DIR, safe_stem
 
 LANGS = ["自动检测", "Chinese", "English", "Cantonese", "Japanese", "Korean",
          "French", "German", "Spanish", "Russian", "Portuguese", "Italian"]
@@ -21,7 +21,7 @@ def worker(q, files, language, seg_sec, batch, max_chars):
     try:
         for i, f in enumerate(files, 1):
             q.put(f"===== 文件 {i}/{len(files)}:{os.path.basename(f)} =====")
-            base = os.path.splitext(os.path.basename(f))[0]
+            base = safe_stem(os.path.splitext(os.path.basename(f))[0])
             out = os.path.join(os.path.dirname(os.path.abspath(f)), base + ".srt")
             transcribe_to_srt(
                 f, out,
